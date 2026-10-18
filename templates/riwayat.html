@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<title>Riwayat Prediksi</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #dff7ff 40%,
+        #b8ecff 100%
+    );
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    padding:18px 60px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.logo-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-size:24px;
+    font-weight:500;
+}
+
+.logo{
+    width:55px;
+    height:55px;
+    background:#19c5f3;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo img{
+    width:35px;
+}
+
+.nav-links{
+    display:flex;
+    gap:60px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:black;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a i{
+    color:#19c5f3;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropbtn{
+    background:#19c5f3;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    background:white;
+    min-width:160px;
+    box-shadow:0 8px 16px rgba(0,0,0,.2);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px;
+    color:black;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#f1f1f1;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+/* ================= CONTENT ================= */
+
+.container{
+    width:95%;
+    margin:25px auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    font-size:48px;
+}
+
+.header p{
+    color:#666;
+    margin-top:5px;
+}
+
+.btn{
+    background:#bcefff;
+    color:black;
+    text-decoration:none;
+    padding:16px 28px;
+    border-radius:16px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+/* ================= ALERT ================= */
+
+.alert{
+    background:#d8ffe5;
+    color:#159947;
+    padding:15px 20px;
+    border-radius:12px;
+    margin-bottom:25px;
+    font-weight:bold;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    font-size:36px;
+    margin-bottom:5px;
+}
+
+.card p{
+    color:#666;
+}
+
+.total{
+    border-left:6px solid #19c5f3;
+}
+
+.melanoma{
+    border-left:6px solid #ff4d4d;
+}
+
+.basal{
+    border-left:6px solid #2ecc71;
+}
+
+.nevus{
+    border-left:6px solid #f1c40f;
+}
+
+/* ================= TABLE ================= */
+
+.table-box{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#22c4f3;
+    color:white;
+    padding:16px;
+    text-align:left;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+}
+
+td img{
+    width:55px;
+    height:55px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* ================= BADGE ================= */
+
+.badge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.badge-red{
+    background:#ffd6d6;
+    color:#ff2d2d;
+}
+
+.badge-green{
+    background:#d8ffe3;
+    color:#00a84f;
+}
+
+.badge-yellow{
+    background:#fff4c2;
+    color:#c99900;
+}
+
+.badge-blue{
+    background:#d6ecff;
+    color:#0066cc;
+}
+
+/* ================= ACTION ================= */
+
+.action{
+    display:flex;
+    gap:12px;
+}
+
+.action i{
+    cursor:pointer;
+}
+
+.view{
+    color:#22c4f3;
+}
+
+.delete{
+    color:red;
+}
+
+.btn-delete{
+    background:#ff4d4d;
+    color:white;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+}
+
+.btn-delete:hover{
+    background:#e53935;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media screen and (max-width:768px){
+
+    .navbar{
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .logo-title{
+        font-size:18px;
+    }
+
+    .logo{
+        width:45px;
+        height:45px;
+    }
+
+    .nav-links{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .nav-links a{
+        justify-content:center;
+        font-size:15px;
+        padding:10px;
+        background:white;
+        border-radius:10px;
+        box-shadow:0 3px 8px rgba(0,0,0,.08);
+    }
+
+    .dropbtn{
+        width:100%;
+    }
+
+    .container{
+        width:95%;
+    }
+
+    .header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .header h1{
+        font-size:30px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .card h2{
+        font-size:28px;
+    }
+
+    /* TABEL SCROLL DI HP */
+
+    .table-box{
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:1000px;
+    }
+
+    td,
+    th{
+        white-space:nowrap;
+        font-size:14px;
+    }
+
+    td img{
+        width:45px;
+        height:45px;
+    }
+
+    .btn-delete{
+        font-size:12px;
+        padding:6px 10px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo-title">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='foto/finger.png') }}" alt="Logo">
+        </div>
+        Dermascan
+    </div>
+
+    <div class="nav-links">
+        <a href="/">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="/scan">
+            <i class="fa-solid fa-camera"></i>
+            Scan
+        </a>
+
+        <a href="/riwayat">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Riwayat
+        </a>
+
+        <a href="/profil">
+            <i class="fa-solid fa-user"></i>
+            Profil
+        </a>
+    </div>
+
+    {% if session.get('username') %}
+    <div class="dropdown">
+
+        <button class="dropbtn">
+            {{ session['username']|upper }}
+            <i class="fa-solid fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown-content">
+            <a href="/logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+            <h1>Riwayat Prediksi</h1>
+            <p>Semua hasil analisis yang telah anda lakukan.</p>
+        </div>
+
+        <a href="/scan" class="btn">
+            <i class="fa-solid fa-plus"></i>
+            Analisis Baru
+        </a>
+
+    </div>
+
+    <div class="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        Selamat datang, {{ session['username'] }}
+    </div>
+
+    <!-- STATISTIK -->
+
+    <div class="stats">
+
+        <div class="card total">
+            <h2>{{ total }}</h2>
+            <p>Total Prediksi</p>
+        </div>
+
+        <div class="card melanoma">
+            <h2>{{ melanoma }}</h2>
+            <p>Melanoma</p>
+        </div>
+
+        <div class="card basal">
+            <h2>{{ basal }}</h2>
+            <p>Basal Cell Carcinoma</p>
+        </div>
+
+        <div class="card nevus">
+            <h2>{{ nevus }}</h2>
+            <p>Nevus</p>
+        </div>
+
+    </div>
+
+    <!-- TABEL -->
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>Gambar</th>
+                <th>Nama</th>
+                <th>Hasil</th>
+                <th>Umur</th>
+                <th>Jenis Kelamin</th>
+                <th>Lokasi</th>
+                <th>Akurasi</th>
+                <th>Tanggal</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for item in data %}
+
+            <tr>
+
+                <td>
+                    <img src="{{ url_for('uploaded_file', filename=item.gambar) }}">
+                </td>
+
+                <td>
+                    <b>{{ item.nama_pasien }}</b>
+                </td>
+
+                <td>
+
+                        {% if item.hasil == 'Melanoma' %}
+
+                    <span class="badge badge-red">
+                        Melanoma
+                </span>
+
+                        {% elif item.hasil == 'Nevus' %}
+
+                    <span class="badge badge-yellow">
+                        Nevus
+                </span>
+
+                        {% elif item.hasil == 'Basal Cell Carcinoma' %}
+
+                    <span class="badge badge-green">
+                        Basal Cell Carcinoma
+                    </span>
+
+                        {% elif item.hasil == 'Non Skin' %}
+
+                <span class="badge badge-blue">
+                        Non Skin
+                    </span>
+
+                {% else %}
+
+                    <span class="badge">
+                    {{ item.hasil }}
+                </span>
+
+            {% endif %}
+
+            </td>
+
+                <td>{{ item.umur }}</td>
+
+                <td>{{ item.jk }}</td>
+
+                <td>{{ item.lokasi }}</td>
+
+                <td>{{ item.akurasi }}%</td>
+
+                <td>{{ item.tanggal }}</td>
+
+                <td>
+                    <a href="/hapus_riwayat/{{ item.id }}"
+                    class="btn-delete"
+                    onclick="return confirm('Yakin ingin menghapus data ini?')">
+            <i class="fa-solid fa-trash"></i>
+                    Hapus
+    </a>
+</td>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

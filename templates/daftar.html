@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Akun - Skinscan AI</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #eaf9ff 35%,
+        #bfefff 70%,
+        #8fdcf5 100%
+    );
+}
+
+.register-box{
+    width:450px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#f3f3f3;
+    outline:none;
+}
+
+.register-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#1ec9f3;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.login-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.login-link a{
+    color:#1ec9f3;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Daftar Akun Baru</h2>
+
+    <form action="/register" method="POST">
+
+        <div class="input-group">
+            <label>Nama Lengkap</label>
+            <input type="text" name="nama" placeholder="Masukkan nama" required>
+        </div>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Masukkan username" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Masukkan password" required>
+        </div>
+
+        <button type="submit" class="register-btn">
+            Daftar
+        </button>
+
+    </form>
+
+    <div class="login-link">
+        <a href="/login">Kembali ke Login</a>
+    </div>
+</div>
+
+</body>
+</html>

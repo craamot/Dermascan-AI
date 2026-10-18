@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinscan AI Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#ffffff 0%,#dff7ff 40%,#9de5fa 100%);
+    min-height:100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    padding:18px 60px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.logo-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-size:24px;
+    font-weight:500;
+}
+
+.logo{
+    width:55px;
+    height:55px;
+    background:#19c5f3;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo img{
+    width:35px;
+}
+
+.nav-links{
+    display:flex;
+    gap:60px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:black;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a i{
+    color:#19c5f3;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.dropbtn{
+    background:#19c5f3;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    background:white;
+    min-width:160px;
+    box-shadow:0 8px 16px rgba(0,0,0,.2);
+    border-radius:10px;
+    overflow:hidden;
+    z-index:999;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px;
+    color:black;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#f1f1f1;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+/* tombol login */
+
+.login-btn{
+    background:#19c5f3;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:12px;
+    font-weight:bold;
+}
+/* Hero */
+.hero{
+    text-align:center;
+    margin-top:70px;
+}
+
+.hero h1{
+    font-size:55px;
+    font-weight:bold;
+}
+
+.hero .red{
+    color:red;
+}
+
+.hero p{
+    margin-top:30px;
+    font-size:24px;
+    color:#333;
+    line-height:1.6;
+}
+
+.detect-btn{
+    margin-top:40px;
+    display:inline-block;
+    background:#63d7ff;
+    color:white;
+    padding:18px 40px;
+    border-radius:18px;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:bold;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Stats */
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:80px;
+    margin-top:70px;
+}
+
+.stat h2{
+    color:#2d8cff;
+    font-size:50px;
+}
+
+.stat p{
+    font-size:22px;
+    color:#666;
+    font-weight:bold;
+}
+
+/* Image */
+.hero-image{
+    margin-top:60px;
+}
+
+.hero-image img{
+    width:320px;
+    border-radius:10px;
+}
+.nav-links a{
+    text-decoration:none;
+    color:black;
+    font-size:22px;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-links a i{
+    color:#18c4f2;
+    font-size:20px;
+}
+
+.dropdown{
+    position:relative;
+    display:inline-block;
+}
+
+.dropbtn{
+    background:#18c4f2;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    background:white;
+    min-width:160px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.2);
+    border-radius:10px;
+    overflow:hidden;
+    z-index:1000;
+}
+
+.dropdown-content a{
+    color:black;
+    padding:14px 18px;
+    text-decoration:none;
+    display:block;
+}
+
+.dropdown-content a:hover{
+    background:#f1f1f1;
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+/* ================= RESPONSIVE MOBILE ================= */
+
+@media screen and (max-width: 768px){
+
+    .navbar{
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .logo-title{
+        font-size:20px;
+    }
+
+    .logo{
+        width:45px;
+        height:45px;
+    }
+
+    .nav-links{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .nav-links a{
+        justify-content:center;
+        font-size:16px;
+        background:white;
+        padding:10px;
+        border-radius:10px;
+        box-shadow:0 3px 8px rgba(0,0,0,.08);
+    }
+
+    .login-btn,
+    .dropbtn{
+        width:100%;
+        text-align:center;
+    }
+
+    .hero{
+        margin-top:30px;
+        padding:0 15px;
+    }
+
+    .hero h1{
+        font-size:32px;
+        line-height:1.3;
+    }
+
+    .hero p{
+        font-size:16px;
+        margin-top:15px;
+    }
+
+    .detect-btn{
+        width:100%;
+        max-width:320px;
+        font-size:18px;
+        padding:15px;
+    }
+
+    .stats{
+        flex-direction:column;
+        gap:25px;
+        margin-top:40px;
+    }
+
+    .stat h2{
+        font-size:38px;
+    }
+
+    .stat p{
+        font-size:16px;
+    }
+
+    .hero-image img{
+        width:90%;
+        max-width:280px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo-title">
+        <div class="logo">
+            <img src="static/foto/finger.png">
+        </div>
+        Dermascan
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="/scan">
+            <i class="fa-solid fa-camera"></i>
+            Scan
+        </a>
+
+        <a href="/riwayat">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Riwayat
+        </a>
+
+        <a href="/profil">
+            <i class="fa-solid fa-user"></i>
+            Profil
+        </a>
+
+    </div>
+
+    {% if session.get('username') %}
+    <div class="dropdown">
+
+        <button class="dropbtn">
+            {{ session['username']|upper }}
+            <i class="fa-solid fa-caret-down"></i>
+        </button>
+
+        <div class="dropdown-content">
+            <a href="/logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <a href="/login" class="login-btn">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
+    </a>
+
+    {% endif %}
+
+</div>
+<!-- Hero -->
+<div class="hero">
+    <h1>
+        Deteksi Dini 
+        <span class="red">Kanker Kulit</span><br>
+        dengan <span class="red">AI</span>
+    </h1>
+
+    <p>
+        Gunakan teknologi kecerdasan buatan terdepan untuk<br>
+        mendeteksi melanoma dan lesi kulit berbahaya secara cepat dan akurat.
+    </p>
+
+    <a href="/scan" class="detect-btn">
+        <i class="fa-regular fa-circle-play"></i>
+        Mulai Deteksi →
+    </a>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <h2>95%</h2>
+            <p>Akurasi model</p>
+        </div>
+
+        <div class="stat">
+            <h2>5K+</h2>
+            <p>Dataset Gambar</p>
+        </div>
+
+        <div class="stat">
+            <h2>1s</h2>
+            <p>Waktu prediksi</p>
+        </div>
+    </div>
+
+    <!-- Gambar bawah -->
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='foto/aip.jpg') }}" alt="AI Scan">
+    </div>
+</div>
+
+</body>
+</html>
